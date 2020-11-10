@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 let RatingSchema = new Schema(
     {
         restuarantId: String,
-        cutomerId: String,
+        customerId: String,
         rating: String
     }
 );

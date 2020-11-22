@@ -11,7 +11,8 @@ const restuarantRouter = require('./routes/restuarants.route');
 const ratingsRouter = require('./routes/ratings.route');
 const ordersRouter = require('./routes/orders.route');
 const customersRouter = require('./routes/customers.route');
-
+const loginRouter = require('./routes/login.route');
+const authToken = require('../Middlewares/auth_token');
 mongoose.connect(CONNECTION_URL.url, { useNewUrlParser: true }).then(() => {
     console.log('connected to db');
 }).catch((err) => {
@@ -22,10 +23,11 @@ mongoose.connect(CONNECTION_URL.url, { useNewUrlParser: true }).then(() => {
 app.get('/', (req, res) => {
     res.json({ "message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes." });
 });
-app.use('/restaurants', restuarantRouter);
-app.use('/ratings', ratingsRouter);
-app.use('/orders', ordersRouter);
-app.use('/customers', customersRouter);
+app.use('/restaurants', authToken.verify, restuarantRouter);
+app.use('/ratings', authToken.verify, ratingsRouter);
+app.use('/orders', authToken.verify, ordersRouter);
+app.use('/customers', authToken.verify, customersRouter);
+app.use('/login', authToken.verify, loginRouter);
 app.listen(3000, () => { console.log('Listening on port 3000') });
 
 

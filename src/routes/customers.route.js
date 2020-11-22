@@ -21,4 +21,20 @@ customersRouter.route('/deactivateCustomer')
             res.send(err);
         })
     });
+customersRouter.route('/create')
+    .post((req, res) => {
+        CustomerController.createCustomer(req).then(customers => {
+            res.json(customers);
+        }).catch((err) => {
+            res.send(err);
+        })
+    });
+customersRouter.route('/update')
+    .put((req, res) => {
+        CustomerController.updateCustomer(req).then(customers => {
+            res.json(customers);
+        }).catch((err) => {
+            res.send(err);
+        })
+    });
 module.exports = customersRouter;

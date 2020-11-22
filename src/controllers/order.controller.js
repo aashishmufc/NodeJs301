@@ -48,13 +48,6 @@ exports.placeOrder = (req, res) => {
 exports.updateOrder = (req, res) => {
     return new Promise((resolve, reject) => {
         const orderId = { _id: req.query.orderId };
-        var updated_order = {
-            "status": req.body.status,
-            "customerId": req.body.customerId,
-            "restuarantId": req.body.restuarantId,
-            "items": req.body.items,
-            "totalprice": "6788"
-        };
         Order.findOneAndUpdate(orderId, { $set: req.body}, { upsert: true, new: true })
             .then(order => {
                 resolve(order);

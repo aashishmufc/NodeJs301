@@ -12,6 +12,13 @@ customersRouter.route('/')
         }).catch((err) => {
             res.send(err);
         })
-    })
-
+    });
+customersRouter.route('/deactivateCustomer')
+    .get((req, res) => {
+        CustomerController.deactivateCustomer(req).then(customers => {
+            res.json(customers);
+        }).catch((err) => {
+            res.send(err);
+        })
+    });
 module.exports = customersRouter;

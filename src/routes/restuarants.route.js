@@ -14,4 +14,13 @@ restrauntRouter.route('/')
         })
     })
 
+restrauntRouter.route('/filter').get((req, res) => {
+    RestrauntController.searchByName(req).then(restuarants => {
+        res.json(restuarants);
+    }).catch((err) => {
+        res.err(err)
+    });
+})
+
+
 module.exports = restrauntRouter;

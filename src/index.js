@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.use('/restaurants', restuarantRouter);
 app.use('/ratings', ratingsRouter);
 app.use('/orders', ordersRouter);
-app.use('/customers', customersRouter)
+app.use('/customers', customersRouter);
 app.listen(3000, () => { console.log('Listening on port 3000') });
 
 

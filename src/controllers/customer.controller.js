@@ -11,5 +11,15 @@ exports.findAll = (req, res) => {
                 });
             });
     })
-
 };
+exports.deactivateCustomer = async (req) => {
+    const update = { status: 'deactivated' };
+    return await Customer.findByIdAndUpdate(req.query.id, update, { new: true })
+        .then(order => {
+            return (order);
+        }).catch(err => {
+            return ({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+}
